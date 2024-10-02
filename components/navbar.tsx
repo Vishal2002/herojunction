@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Button } from "./ui/button"
 
 const Navbar = () => {
   return (
@@ -8,11 +9,11 @@ const Navbar = () => {
   <span className="font-bold text-2xl">HeroJunction</span>
 </Link>
 <nav className="ml-auto flex gap-4 sm:gap-6">
-  <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-    Home
+  <Link className="text-sm font-medium hover:underline underline-offset-4" href="https://x.com/sharma_188">
+    <Button className="font-semibold">Follow on X</Button>
   </Link>
-  <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-    Templates
+  <Link className="text-sm font-medium hover:underline underline-offset-4" href="https://peerlist.io/vishal2002">
+    <Button className="font-semibold">Like on Peerlist</Button>
   </Link>
 </nav>
 </header>
