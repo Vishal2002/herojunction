@@ -2,7 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Navbar from "@/components/navbar"
-
+import { FlipWords } from "@/components/ui/flip-words"
 function GridBackgroundDemo() {
   return (
     <div className="h-[20rem] w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
@@ -14,6 +14,7 @@ function GridBackgroundDemo() {
 }
 
 export default function LandingPage() {
+  const words=["Hours","Minutes"]
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -24,7 +25,7 @@ export default function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-4xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400">
-                  Create Stunning Hero Sections in Minutes
+                  Make Stunning Hero <br /> Sections in <FlipWords words={words}/>
                 </h1>
                 <p className="mx-auto max-w-[700px] text-neutral-700 md:text-xl dark:text-neutral-300">
                   Jumpstart your startup's landing page with professionally designed hero sections. Copy, paste, and
