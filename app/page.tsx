@@ -14,7 +14,7 @@ function GridBackgroundDemo() {
 }
 
 export default function LandingPage() {
-  const words=["Hours","Minutes"]
+  const words=["not in Hours","but in Minutes"]
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -25,7 +25,7 @@ export default function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-4xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400">
-                  Make Stunning Hero <br /> Sections in <FlipWords words={words}/>
+                  Make Stunning Hero <br /> Sections <FlipWords words={words}/>
                 </h1>
                 <p className="mx-auto max-w-[700px] text-neutral-700 md:text-xl dark:text-neutral-300">
                   Jumpstart your startup's landing page with professionally designed hero sections. Copy, paste, and

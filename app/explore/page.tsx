@@ -12,18 +12,25 @@ import Navbar from '@/components/navbar'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 //@ts-ignore
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { Code, Eye } from 'lucide-react'
+import { Code, Eye,RouteIcon,Copy, Check } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ExplorePage() {
   const [selectedHero, setSelectedHero] = useState<HeroSection>(heroSections[0])
   const [searchTerm, setSearchTerm] = useState("")
-
+  const [copied, setCopied] = useState(false)
   const filteredHeroSections = heroSections.filter(hero =>
     hero.company.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(selectedHero.code)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col overflow-hidden min-h-screen bg-gray-100 dark:bg-gray-900">
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
@@ -52,6 +59,7 @@ export default function ExplorePage() {
               <TabsList>
                 <TabsTrigger value="preview"><Eye className="mr-2 h-4 w-4" /> Preview</TabsTrigger>
                 <TabsTrigger value="code"><Code className="mr-2 h-4 w-4" /> Code</TabsTrigger>
+                <TabsTrigger value="steps"><RouteIcon className="mr-2 h-4 w-4" />Steps</TabsTrigger>
               </TabsList>
               <TabsContent value="preview">
                 <div className="border rounded-lg overflow-hidden">
@@ -64,19 +72,49 @@ export default function ExplorePage() {
                 </div>
               </TabsContent>
               <TabsContent value="code">
-                <div className="rounded-lg overflow-hidden">
-                  <SyntaxHighlighter 
-                    language="tsx" 
-                    style={vscDarkPlus}
-                    customStyle={{
-                      margin: 0,
-                      padding: '1rem',
-                      fontSize: '0.875rem',
-                      lineHeight: '1.5',
-                    }}
+                <div className="rounded-lg overflow-hidden relative">
+                  <Button
+                    onClick={copyToClipboard}
+                    className="absolute top-2 right-2 z-10"
+                    size="sm"
                   >
-                    {selectedHero.code}
-                  </SyntaxHighlighter>
+                    {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                  </Button>
+                  <ScrollArea className="h-[400px] w-full">
+                    <div className="relative overflow-x-auto">
+                      <SyntaxHighlighter 
+                        language="tsx" 
+                        style={vscDarkPlus}
+                        customStyle={{
+                          margin: 0,
+                          padding: '2.5rem 1rem 1rem',
+                          fontSize: '0.875rem',
+                          lineHeight: '1.5',
+                          minWidth: '100%',
+                          display: 'inline-block',
+                        }}
+                      >
+                        {selectedHero.code}
+                      </SyntaxHighlighter>
+                    </div>
+                  </ScrollArea>
+                </div>
+              </TabsContent>
+              <TabsContent value="steps">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold">Steps to Implement This Hero Section</h2>
+                  <ol className="list-decimal list-inside space-y-2">
+                    <li>Set up your Next.js project with TypeScript and Tailwind CSS.</li>
+                    <li>Install necessary dependencies (e.g., @radix-ui/react-dropdown-menu, lucide-react).</li>
+                    <li>Create a new component file for your hero section.</li>
+                    <li>Copy the provided code into your new component file.</li>
+                    <li>Adjust the content (text, images, colors) to match your brand.</li>
+                    <li>Implement the navigation functionality for your dropdown menus.</li>
+                    <li>Add any additional interactivity or animations as needed.</li>
+                    <li>Optimize images and ensure responsive design across all screen sizes.</li>
+                    <li>Test the component thoroughly in different browsers and devices.</li>
+                    <li>Integrate the hero section into your main page or layout component.</li>
+                  </ol>
                 </div>
               </TabsContent>
             </Tabs>
