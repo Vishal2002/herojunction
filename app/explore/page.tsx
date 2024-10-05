@@ -1,24 +1,51 @@
 "use client"
-
 import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import HeroSectionPreview from "@/components/HeroSectionPreview"
+import Image from 'next/image'
 import { heroSections, HeroSection } from "@/data/heroSections"
 import Navbar from '@/components/navbar'
 //@ts-ignore
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 //@ts-ignore
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { Code, Eye,RouteIcon,Copy, Check } from 'lucide-react'
-import Image from 'next/image'
+import { Code, Eye, RouteIcon, Copy, Check } from 'lucide-react'
+
+const PreviewMedia: React.FC<{ preview: HeroSection['preview'] }> = ({ preview }) => {
+  if (preview.type === 'image') {
+    return (
+      <Image
+        src={preview.src}
+        //@ts-ignore
+        alt={preview.alt}
+        width={800}
+        height={400}
+        layout="responsive"
+        objectFit="cover"
+      />
+    )
+  } else if (preview.type === 'video') {
+    return (
+      <video 
+        controls 
+        width="100%" 
+        height="auto"
+        poster={preview.poster}
+      >
+        <source src={preview.src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    )
+  }
+  return null
+}
 
 export default function ExplorePage() {
   const [selectedHero, setSelectedHero] = useState<HeroSection>(heroSections[0])
   const [searchTerm, setSearchTerm] = useState("")
   const [copied, setCopied] = useState(false)
+  
   const filteredHeroSections = heroSections.filter(hero =>
     hero.company.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -34,8 +61,8 @@ export default function ExplorePage() {
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
           <div className="w-full lg:w-64 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-  
             <ScrollArea className="h-[calc(100vh-200px)]">
               <div className="space-y-2">
                 {filteredHeroSections.map((hero) => (
@@ -53,6 +80,8 @@ export default function ExplorePage() {
               </div>
             </ScrollArea>
           </div>
+          
+          {/* Main content */}
           <div className="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">{selectedHero.company} Hero Section</h1>
             <Tabs defaultValue="preview" className="space-y-4">
@@ -63,28 +92,22 @@ export default function ExplorePage() {
               </TabsList>
               <TabsContent value="preview">
                 <div className="border rounded-lg overflow-hidden">
-                  <HeroSectionPreview
-                    title={selectedHero.title}
-                    description={selectedHero.description}
-                    primaryCTA={selectedHero.primaryCTA}
-                    secondaryCTA={selectedHero.secondaryCTA}
-                  />
+                  <PreviewMedia preview={selectedHero.preview} />
                 </div>
               </TabsContent>
               <TabsContent value="code">
                 <div className="rounded-lg overflow-hidden relative">
-                <div className="absolute top-2 right-3 z-10 flex items-center gap-2 space-x-1">
-                  <Image alt='TypeScript' width={25} height={25} src='/typescript.svg'/>
-                  <Button
-                    onClick={copyToClipboard}
-                    size="sm"
-                    variant="outline"
-                    className="p-2 bg-none"
-                  >
-                    {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  </Button>
-                </div>
-                 
+                  <div className="absolute top-2 right-4 z-10 flex items-center space-x-2">
+                    <Image alt='TypeScript' width={25} height={25} src='/typescript.svg'/>
+                    <Button
+                      onClick={copyToClipboard}
+                      size="sm"
+                      variant="outline"
+                      className="p-2 bg-none"
+                    >
+                      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    </Button>
+                  </div>
                   <ScrollArea className="h-[400px] w-full">
                     <div className="relative overflow-x-auto">
                       <SyntaxHighlighter 
