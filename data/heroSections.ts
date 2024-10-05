@@ -8,6 +8,7 @@ export interface HeroSection {
     primaryCTA: string;
     secondaryCTA: string;
     code: string;
+    steps: string[];
   }
   
   export const heroSections: HeroSection[] = [
@@ -42,8 +43,19 @@ export interface HeroSection {
         </div>
       </section>
     )
-  }`
+  }`,
+  steps: [
+    "Set up your Next.js project with TypeScript and Tailwind CSS.",
+    "Install necessary UI components (e.g., @/components/ui/button).",
+    "Create a new component file for your hero section.",
+    "Copy the provided code into your new component file.",
+    "Adjust the content (text, buttons) to match your brand.",
+    "Integrate the hero section into your main page or layout component.",
+    "Test the component across different screen sizes for responsiveness.",
+    "Optimize for performance and accessibility."
+  ],
     },
+   
     {
       id: 'company2',
       company: 'Solana',
@@ -165,10 +177,14 @@ export default function Home() {
           for power users, new consumers, and everyone in between.
         </p>
         <div className="flex space-x-4">
-          <button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-[#4b1785] rounded-full text-white font-semibold transition-all duration-300 ease-in-out hover:bg-white hover:text-black hover:bg-none hover:bg-white">
+          <button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-[#4b1785] rounded-full
+           text-white font-semibold transition-all duration-300 ease-in-out hover:bg-white
+            hover:text-black hover:bg-none hover:bg-white">
             START BUILDING
           </button>
-          <button className="px-6 py-3 bg-transparent border border-white rounded-full text-white font-semibold hover:bg-white hover:text-black transition-colors">
+          <button className="px-6 py-3 bg-transparent border
+           border-white rounded-full text-white font-semibold
+            hover:bg-white hover:text-black transition-colors">
             RESOURCES
           </button>
         </div>
@@ -195,7 +211,23 @@ export default function Home() {
     </div>
   )
 }
-  }`
+  }`,
+  steps: [
+    "Set up a Next.js project with TypeScript and Tailwind CSS.",
+    "Install required dependencies (next, react, lucide-react, @radix-ui/react-dropdown-menu).",
+    "Set up your project to use custom UI components (Button, DropdownMenu, Input).",
+    "Create a new page or component file for the Solana hero section.",
+    "Copy the provided code into your new file.",
+    "Replace placeholder images with actual Solana brand assets.",
+    "Customize the navigation items and dropdown contents.",
+    "Implement actual search functionality if required.",
+    "Ensure responsive design works across all screen sizes.",
+    "Optimize images and implement lazy loading for performance.",
+    "Add animations and transitions for a more dynamic user experience.",
+    "Implement proper link handling and routing for navigation items.",
+    "Test thoroughly across different browsers and devices."
+  ],
+  
     },
-    
+  
   ];

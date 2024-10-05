@@ -73,13 +73,18 @@ export default function ExplorePage() {
               </TabsContent>
               <TabsContent value="code">
                 <div className="rounded-lg overflow-hidden relative">
+                <div className="absolute top-2 right-3 z-10 flex items-center gap-2 space-x-1">
+                  <Image alt='TypeScript' width={25} height={25} src='/typescript.svg'/>
                   <Button
                     onClick={copyToClipboard}
-                    className="absolute top-2 right-2 z-10"
                     size="sm"
+                    variant="outline"
+                    className="p-2 bg-none"
                   >
                     {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </Button>
+                </div>
+                 
                   <ScrollArea className="h-[400px] w-full">
                     <div className="relative overflow-x-auto">
                       <SyntaxHighlighter 
@@ -104,16 +109,9 @@ export default function ExplorePage() {
                 <div className="space-y-4">
                   <h2 className="text-xl font-semibold">Steps to Implement This Hero Section</h2>
                   <ol className="list-decimal list-inside space-y-2">
-                    <li>Set up your Next.js project with TypeScript and Tailwind CSS.</li>
-                    <li>Install necessary dependencies (e.g., @radix-ui/react-dropdown-menu, lucide-react).</li>
-                    <li>Create a new component file for your hero section.</li>
-                    <li>Copy the provided code into your new component file.</li>
-                    <li>Adjust the content (text, images, colors) to match your brand.</li>
-                    <li>Implement the navigation functionality for your dropdown menus.</li>
-                    <li>Add any additional interactivity or animations as needed.</li>
-                    <li>Optimize images and ensure responsive design across all screen sizes.</li>
-                    <li>Test the component thoroughly in different browsers and devices.</li>
-                    <li>Integrate the hero section into your main page or layout component.</li>
+                    {selectedHero.steps.map((step, index) => (
+                      <li key={index}>{step}</li>
+                    ))}
                   </ol>
                 </div>
               </TabsContent>
