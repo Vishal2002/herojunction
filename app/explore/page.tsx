@@ -28,7 +28,10 @@ const PreviewMedia: React.FC<{ preview: HeroSection['preview'] }> = ({ preview }
   } else if (preview.type === 'video') {
     return (
       <video 
-        controls 
+      autoPlay
+      loop
+      muted
+      playsInline
         width="100%" 
         height="auto"
         poster={preview.poster}
