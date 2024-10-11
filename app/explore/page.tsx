@@ -100,7 +100,7 @@ export default function ExplorePage() {
               </TabsContent>
               <TabsContent value="code">
                 <div className="rounded-lg overflow-hidden relative">
-                  <div className="absolute top-2 right-4 z-10 flex items-center space-x-2">
+                  <div className="absolute top-2 right-[1rem] z-10 flex items-center space-x-2">
                     <Image alt='TypeScript' width={25} height={25} src='/typescript.svg'/>
                     <Button
                       onClick={copyToClipboard}

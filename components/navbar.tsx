@@ -1,27 +1,28 @@
+import Image from "next/image"
 import Link from "next/link"
-import { Button } from "./ui/button"
+import { Button } from "@/components/ui/button"
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <div>
-      <header className="px-4 lg:px-6 h-14 flex items-center border-b">
-<Link className="flex items-center justify-center" href="/">
-  <span className="font-bold text-2xl">HeroJunction</span>
-</Link>
-<nav className="ml-auto flex gap-4 sm:gap-6">
-  <Link className="text-sm font-medium hover:underline underline-offset-4" href="https://x.com/sharma_188">
-    <Button className="font-semibold">Follow on X</Button>
-  </Link>
-  <Link className="text-sm font-medium hover:underline underline-offset-4" href="https://peerlist.io/vishal2002">
-    <Button className="font-semibold">Like on Peerlist</Button>
-  </Link>
-</nav>
-</header>
-    </div>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 max-w-screen-2xl items-center">
+        <Link className="flex items-center justify-center" href="/">
+       
+          <span className="font-bold ml-2 text-2xl">HeroJunction</span>
+        </Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Link href="https://x.com/sharma_188">
+            <Button variant="ghost" className="h-9 w-9 px-0">
+              <Image src="/x.png" alt="X (Twitter) Icon" width={20} height={20} />
+            </Button>
+          </Link>
+          <Link href="https://peerlist.io/vishal2002">
+            <Button variant="ghost" className="h-9 w-9 px-0">
+              <Image src="/Peerlist.png" alt="Peerlist Icon" width={60} height={60} />
+            </Button>
+          </Link>
+        </nav>
+      </div>
+    </header>
   )
 }
-
-export default Navbar
-
-
-
