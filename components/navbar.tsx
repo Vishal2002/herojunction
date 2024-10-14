@@ -21,7 +21,7 @@ export default function Navbar() {
               <Image src="/x.png" alt="X (Twitter) Icon" width={20} height={20} />
             </Button>
           </Link>
-          <Link href="https://peerlist.io/vishal2002">
+          <Link href="https://peerlist.io/vishal2002/project/hero-junction">
             <Button variant="ghost" className="h-9 w-9 px-0">
               <Image src="/Peerlist.png" alt="Peerlist Icon" width={60} height={60} />
             </Button>
